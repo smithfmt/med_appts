@@ -29,8 +29,8 @@ const ReportsLayout = () => {
                             <td>{index}</td>
                             <td>Dr. {doctor.name}</td>
                             <td>{doctor.special}</td>
-                            <td><button onClick={() => {}}>View Report</button></td>
-                            <td><button onClick={() => {}}>Download Report</button></td>
+                            <td><button><a style={{color: "white"}} href="/patient_report.pdf">View Report</a></button></td>
+                            <td><button onClick={() => {}}><a style={{color: "white"}} href="/patient_report.pdf">Download Report</a></button></td>
                         </tr>
                     )
                 })}
