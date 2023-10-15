@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Navbar.css";
-
-
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -71,7 +70,10 @@ const Navbar = () => {
         </li>
         {isLoggedIn?(
           <>
-            <p>{`Welcome, ${username.split("@")[0]}`}</p>
+            <p className="profile-dropdown">
+                {`Welcome, ${username.split("@")[0]}`}
+                <ProfileCard />
+            </p>
             <li className="link">
               <button className="btn2" onClick={handleLogout}>
                 Logout
