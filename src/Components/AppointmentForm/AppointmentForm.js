@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AppointmentFormIC = ({ doctorName, doctorSpeciality, onSubmit }) => {
+const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [date, setDate] = useState('');
@@ -74,4 +74,4 @@ const AppointmentFormIC = ({ doctorName, doctorSpeciality, onSubmit }) => {
     );
   };
 
-export default AppointmentFormIC
+export default AppointmentForm;

@@ -6,9 +6,9 @@ import AppointmentForm from '../AppointmentForm/AppointmentForm'
 import { v4 as uuidv4 } from 'uuid';
 
 
-const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => {
+const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState(JSON.parse(localStorage.getItem("appointmentData"))||[]);
 
   const handleBooking = () => {
     setShowModal(true);
@@ -17,6 +17,8 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
     setAppointments(updatedAppointments);
+    localStorage.removeItem("doctorData");
+    localStorage.removeItem("appointmentData");
   };
 
   const handleFormSubmit = (appointmentData) => {
@@ -26,6 +28,9 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
     };
     const updatedAppointments = [...appointments, newAppointment];
     setAppointments(updatedAppointments);
+    console.log(updatedAppointments)
+    localStorage.setItem("appointmentData",JSON.stringify(updatedAppointments))
+    localStorage.setItem("doctorData",JSON.stringify(name))
     setShowModal(false);
   };
 
@@ -104,4 +109,4 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
   );
 };
 
-export default DoctorCardIC;
+export default DoctorCard;
