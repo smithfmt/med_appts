@@ -39,7 +39,6 @@ const Navbar = () => {
     }
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
-        console.log(storedemail)
       if (storedemail) {
             setIsLoggedIn(true);
             setUsername(storedemail);
@@ -47,9 +46,9 @@ const Navbar = () => {
         }, []);
   return (
     <nav>
-        <div class="nav__logo">
+        <div className="nav__logo">
             <a href="/">
-                <span class="emph">Heal</span><span>Yourself</span> <img src="https://res.cloudinary.com/dcrome1pq/image/upload/v1697381039/Capstone/Logo.svg" alt="doctor_icon" />
+                <span className="emph">Heal</span><span>Yourself</span> <img src="https://res.cloudinary.com/dcrome1pq/image/upload/v1697381039/Capstone/Logo.svg" alt="doctor_icon" />
             </a>
         </div>
       <div className="nav__icon" onClick={handleClick}>
@@ -70,10 +69,10 @@ const Navbar = () => {
         </li>
         {isLoggedIn?(
           <>
-            <p className="profile-dropdown">
+            <div className="profile-dropdown">
                 {`Welcome, ${username.split("@")[0]}`}
                 <ProfileCard />
-            </p>
+            </div>
             <li className="link">
               <button className="btn2" onClick={handleLogout}>
                 Logout

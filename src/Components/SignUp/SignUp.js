@@ -79,6 +79,7 @@ const Sign_Up = () => {
                 name="name" 
                 id="name" 
                 required 
+                minLength={4}
                 className="form-control" 
                 placeholder="Enter your name" 
                 aria-describedby="helpId" 
@@ -106,6 +107,7 @@ const Sign_Up = () => {
                 name="password" 
                 id="password" 
                 required 
+                minLength={8}
                 className="form-control" 
                 placeholder="Enter your password" 
                 aria-describedby="helpId" 

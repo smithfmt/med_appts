@@ -69,6 +69,7 @@ const handleSubmit = async (e) => {
     }
 
     const payload = { ...updatedDetails };
+    console.log({payload})
     const response = await fetch(`${API_URL}/api/auth/user`, {
       method: "PUT",
       headers: {
@@ -78,7 +79,7 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify(payload),
     });
-
+    console.log({updatedDetails})
     if (response.ok) {
       // Update the user details in session storage
       sessionStorage.setItem("name", updatedDetails.name);
@@ -117,7 +118,8 @@ return (
   <input
     type="text"
     name="name"
-    defaultvalue={userDetails.name}
+    defaultValue={userDetails.name}
+    onChange={handleInputChange}
   />
 </label>
 <label>
@@ -125,7 +127,8 @@ return (
   <input
     type="tel"
     name="phone"
-    defaultvalue={userDetails.phone}
+    defaultValue={userDetails.phone}
+    onChange={handleInputChange}
   />
 </label>
 <button type="submit">Save</button>

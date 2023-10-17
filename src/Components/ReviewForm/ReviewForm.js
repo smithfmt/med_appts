@@ -6,18 +6,18 @@ const doctors = [
     {
         name: "James Doe",
         special: "Dentist",
-        review: "",
     },
     {
         name: "Jaou Rouge",
         special: "Cardiology",
-        review: "",
     }
 ]
 
 const ReviewForm = () => {
 
-    const [reviewing, setReviewing] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [submittedMessage, setSubmittedMessage] = useState({});
+
     return(
         <>
         <div className="form-container">
@@ -32,18 +32,23 @@ const ReviewForm = () => {
                 </tr>
                 {doctors.map((doctor, index) => {
                     return (
-                        <tr>
+                        <tr key={index}>
                             <td>{index}</td>
                             <td>Dr. {doctor.name}</td>
                             <td>{doctor.special}</td>
-                            <td>{doctor.review? "" : <button onClick={() => setReviewing(true)}>Click Here</button>}</td>
-                            <td>{doctor.review || ""}</td>
+                            <td>{doctor.review? "" : <button disabled={!!submittedMessage[doctor.name]} onClick={() => setShowForm(doctor.name)}>Click Here</button>}</td>
+                            <td>{submittedMessage[doctor.name] ? `${submittedMessage[doctor.name]}. 5 stars`:""}</td>
                         </tr>
                     )
                 })}
             </table>
         </div>
-        {reviewing?<ReviewFormPopup /> : <></>}
+        <ReviewFormPopup 
+        showForm={showForm} 
+        setShowForm={setShowForm}
+        submittedMessage={submittedMessage} 
+        setSubmittedMessage={setSubmittedMessage}
+        />
         </>
         
     );

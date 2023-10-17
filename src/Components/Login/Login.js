@@ -69,6 +69,7 @@ const Login = () => {
                     className="form-control" 
                     placeholder="Enter your password" 
                     aria-describedby="helpId" 
+                    minLength={8}
                     />
                 </div>
               <div className="btn-group">

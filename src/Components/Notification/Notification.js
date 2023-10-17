@@ -22,7 +22,6 @@ const Notification = ({ children }) => {
       setAppointmentData(storedAppointmentData[0]);
     }
   }, []);
-  console.log({isLoggedIn,appointmentData,doctorData})
   return (
     <div>
       <Navbar ></Navbar>

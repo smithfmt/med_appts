@@ -1,14 +1,19 @@
 import "./ReviewFormPopup.css";
 
 import React, { useState } from 'react';
-function ReviewFormPopup() {
-  const [showForm, setShowForm] = useState(true);
-  const [submittedMessage, setSubmittedMessage] = useState('');
+
+function ReviewFormPopup({
+    showForm, 
+    setShowForm, 
+    submittedMessage,
+    setSubmittedMessage
+}) {
+  
   const [showWarning, setShowWarning] = useState(false);
   const [formData, setFormData] = useState({
-        name: '',
+        name: showForm,
         review: '',
-        rating: 0
+        rating: 5
       });
   const handleButtonClick = () => {
     setShowForm(true);
@@ -18,14 +23,18 @@ function ReviewFormPopup() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmittedMessage(formData);
+    let newSubmittedMessage = {...submittedMessage};
+    newSubmittedMessage[showForm] = formData;
+    setSubmittedMessage(newSubmittedMessage);
     setFormData('');
         if (formData.name && formData.review && formData.rating > 0) {
           setShowWarning(false);
         } else {
           setShowWarning(true);
         }
+    setShowForm(false);
   };
+  if (!showForm) return <></>;
   return (
     <div className="review-form-popup">
       <h2>Review</h2>
@@ -36,10 +45,6 @@ function ReviewFormPopup() {
           <h2>Give Your Feedback</h2>
                {showWarning && <p className="warning">Please fill out all fields.</p>}
                 <div>
-                   <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
-             </div>
-                <div>
                  <label htmlFor="review">Review:</label>
                   <textarea id="review" name="review" value={formData.review} onChange={handleChange} />
                  </div>
@@ -47,13 +52,14 @@ function ReviewFormPopup() {
                  <label htmlFor="review">Rating:</label>
                   <p>⭐⭐⭐⭐⭐</p>
                  </div>
-                 <button disabled={!!submittedMessage} type="submit">Submit</button>
+                 <button disabled={!!submittedMessage[showForm]} type="submit">Submit</button>
+                 <button style={{backgroundColor: "red"}} onClick={() => setShowForm(false)} type="reset">Cancel</button>
                </form>
       )}
-      {submittedMessage && (
+      {submittedMessage[showForm] && (
         <div>
           <h3>Submitted Message:</h3>
-          <p>{submittedMessage}</p>
+          <p>{submittedMessage[showForm]}</p>
         </div>
       )}
     </div>

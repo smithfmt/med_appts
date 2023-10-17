@@ -1,4 +1,7 @@
-
+.profile-card {
+    display: flex;
+    flex-direction: column;
+}
 
 .profile-title {
     font-size: 16px;
