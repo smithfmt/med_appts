@@ -1,7 +1,5 @@
 This is the Readme file for my capstone project
 
-IF you follow these instructions, the project **WILL** Work as I have tested a fresh run of it.
-
 To Run:
 
 - Clone Repo
